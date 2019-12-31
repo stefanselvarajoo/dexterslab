@@ -45,5 +45,4 @@ if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALU
 	echo 'Could not prepare statement!';
 }
 CloseCon($con);
-}
 ?>
