@@ -29,7 +29,17 @@ if ($stmt = $con->prepare('SELECT id, password FROM accounts WHERE username = ?'
 		// Username already exists
 		echo 'Username exists, please choose another!';
 	} else {
-		// Insert new account
+		// Username doesnt exists, insert new account
+if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)')) {
+	// We do not want to expose passwords in our database, so hash the password and use password_verify when a user logs in.
+	$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+	$stmt->bind_param('sss', $_POST['username'], $password, $_POST['email']);
+	$stmt->execute();
+	echo 'You have successfully registered, you can now login!';
+} else {
+	// Something is wrong with the sql statement, check to make sure accounts table exists with all 3 fields.
+	echo 'Could not prepare statement!';
+}
 	}
 	$stmt->close();
 } else {
