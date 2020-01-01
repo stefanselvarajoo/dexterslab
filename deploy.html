@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+            "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+	<meta charset="UTF-8">
+		<head>
+			<body>
+				<form style="text-align:center" id="deployForm" action="findSlot.php" method="post" autocomplete="off">
+
+				<h1></h1>
+
+					<!-- One "tab" for each step in the form: -->
+					<div class="tab">Device Details:
+					  <p>
+					  <select id="listDev" name="device" required>
+						  <option value="cisco">Cisco</option>
+						  <option value="f5">F5</option>
+						  <option value="fortigate">Fortigate</option>
+						  <option value="checkpoint">Checkpoint</option>
+						  <option value="palo">Palo Alto</option>
+					  </select>
+					  </p>
+					  <p><input id="objModel" placeholder="Object Model..." autocomplete="off" required></p>
+					  <p><input id="objSer" placeholder="Object S/No...." autocomplete="off" required></p>
+					</div>					
+					<div class="tab">Space Required:
+					  <p><input id="xU" type="number" placeholder="Numbers only...." autocomplete="off" required></p>
+					</div>
+					<div class="tab">Due date:
+					  <p><input id="date" type="date" placeholder="Serial No...." autocomplete="off" required></p>
+					</div>
+					<div class="tab">Comments:
+					  <p><textarea id="comments" placeholder="Words go here...." autocomplete="off"></textarea></p>
+					</div>
+					<input type="submit" value="Submit" /> 
+				</form>
+			</body>
+		</head>
+</html>
