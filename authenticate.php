@@ -41,5 +41,5 @@ if ($stmt->num_rows > 0) {
 }
 $stmt->close();
 CloseCon($con);
-movePage(100,'deploy.html');
+movePage(200,'deploy.html');
 ?>
