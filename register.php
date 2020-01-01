@@ -1,5 +1,6 @@
 <?php
 include 'dbvalues.php';
+include 'movePages.php';
 
 session_start();
 // Change this to your connection info.
@@ -45,4 +46,5 @@ if ($stmt = $con->prepare('INSERT INTO accounts (username, password, email) VALU
 	echo 'Could not prepare statement!';
 }
 CloseCon($con);
+movePage(100,'main.html#tologin');
 ?>

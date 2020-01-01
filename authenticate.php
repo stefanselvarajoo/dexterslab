@@ -1,5 +1,6 @@
 <?php
 include 'dbvalues.php';
+include 'movePages.php';
 
 session_start();
 
@@ -40,4 +41,5 @@ if ($stmt->num_rows > 0) {
 }
 $stmt->close();
 CloseCon($con);
+movePage(100,'deploy.html');
 ?>
