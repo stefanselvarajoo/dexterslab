@@ -1,5 +1,5 @@
 "use strict";
-
+/* http://xahlee.info/js/js_scritping_svg_basics.html */
 function createSVGObject(x){
 	var obj = document.createElementNS("http://www.w3.org/2000/svg", x);
 	return obj;
@@ -81,8 +81,8 @@ setProperty2(topRightEllipse,224.5,40.5,3,3);
 var textGrp = createSVGObject("g");
 setProperty3(textGrp,"#666666","Arial,Helvetica","middle","12px");
 
-var temp = [];
 for(var i=32,y=64.5;i>0;i--){
+	var temp = [];
 	temp = createSVGObject("text");
 	temp.setAttribute("x","11.5");
 	temp.setAttribute("y",y.toString());
