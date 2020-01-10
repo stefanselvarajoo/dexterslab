@@ -1,7 +1,30 @@
 "use strict";
+
+/* ensure ES6 compliance */
+
+/* define x and y viewbox parameters */
+const xView = 260;
+const yView = 725;
+
+/* define x and y text offset parameters */
+let xText = 12;
+let yText = yView - 65;
+
+/* define ellipses offsets */
+const xBtmEllipse = xView - 230;
+const yBtmEllipse = yView - 45;
+const xEllipse = xView - 65;
+const yEllipse = yView - 55;
+
+/* define rectangle offsets */
+const xBtmRect = xView - 236;
+const yBtmRect = yView - 56;
+//const xRect = xView - ;
+//const yRect = yView - ;
+
 /* http://xahlee.info/js/js_scritping_svg_basics.html */
 function createSVGObject(x){
-	var obj = document.createElementNS("http://www.w3.org/2000/svg", x);
+	let obj = document.createElementNS("http://www.w3.org/2000/svg", x);
 	return obj;
 }
 
@@ -22,8 +45,8 @@ function setProperty1(...property){
 function setProperty2(...property){
 	property[0].setAttribute("cx", property[1]);
 	property[0].setAttribute("cy", property[2]);
-	property[0].setAttribute("rx", property[3]);
-	property[0].setAttribute("ry", property[4]);
+	property[0].setAttribute("rx", "3");
+	property[0].setAttribute("ry", "3");
 }
 
 /* text */
@@ -35,61 +58,73 @@ function setProperty3(...property){
 	property[0].setAttribute("font-size",property[4]);
 }
 
-var svg = createSVGObject("svg");
-setProperty1(svg,250,750);
+function createEllipseSet(...set){
+	setProperty2(set[0],xBtmEllipse,yBtmEllipse);
+	setProperty2(set[1],(xBtmEllipse+xEllipse),yBtmEllipse);
+	setProperty2(set[2],xBtmEllipse,(yBtmEllipse-yEllipse));
+	setProperty2(set[3],(xBtmEllipse+xEllipse),(yBtmEllipse-yEllipse));
+}
 
-var g = createSVGObject("g");
+/* create global SVG object */
+const svg = createSVGObject("svg");
+setProperty1(svg,xView,yView);
 
-var ellipses = createSVGObject("g");
+/* create global grouping */
+const g = createSVGObject("g");
+
+/* create ellipses grouping */
+const ellipses = createSVGObject("g");
 setProperty1(ellipses,0,0,0,0,"#666666",null,"all");
 
-var emptyRackSpace = createSVGObject("g");
+/* create emptyspace grouping */
+const emptyRackSpace = createSVGObject("g");
 setProperty1(emptyRackSpace,0,0,0,0,"#666666","#ffffff","all");
 
-var shadedRack = createSVGObject("g");
+/* create shadedrack grouping */
+const shadedRack = createSVGObject("g");
 setProperty1(shadedRack,0,0,0,0,"#666666","#f4f4f4","all");
 
-var emptyRect = createSVGObject("rect");
-setProperty1(emptyRect,206,690,24,30);
+/* create emptyrect grouping */
+const emptyRect = createSVGObject("rect");
+setProperty1(emptyRect,206,690,24,0);
 
 emptyRackSpace.appendChild(emptyRect);
 
-var btmRect = createSVGObject("rect");
-setProperty1(btmRect,206,21,24,699);
+const btmRect = createSVGObject("rect");
+setProperty1(btmRect,206,21,xBtmRect,yBtmRect);
 
-var topRect = createSVGObject("rect");
-setProperty1(topRect,206,21,24,30);
+const topRect = createSVGObject("rect");
+setProperty1(topRect,206,21,24,0);
 
-var leftRect = createSVGObject("rect");
-setProperty1(leftRect,9,648,24,51);
+const leftRect = createSVGObject("rect");
+setProperty1(leftRect,9,648,24,21);
 
-var rightRect = createSVGObject("rect");
-setProperty1(rightRect,9,648,221,51);
+const rightRect = createSVGObject("rect");
+setProperty1(rightRect,9,648,221,21);
 
-var btmLeftEllipse = createSVGObject("ellipse");
-setProperty2(btmLeftEllipse,29.5,709.5,3,3);
+const btmLeftEllipse = createSVGObject("ellipse");
+const btmRightEllipse = createSVGObject("ellipse");
+const topLeftEllipse = createSVGObject("ellipse");
+const topRightEllipse = createSVGObject("ellipse");
 
-var btmRightEllipse = createSVGObject("ellipse");
-setProperty2(btmRightEllipse,224.5,709.5,3,3);
+createEllipseSet(btmLeftEllipse,btmRightEllipse,topLeftEllipse,topRightEllipse);
 
-var topLeftEllipse = createSVGObject("ellipse");
-setProperty2(topLeftEllipse,29.5,40.5,3,3);
-
-var topRightEllipse = createSVGObject("ellipse");
-setProperty2(topRightEllipse,224.5,40.5,3,3);
-
-var textGrp = createSVGObject("g");
+const textGrp = createSVGObject("g");
 setProperty3(textGrp,"#666666","Arial,Helvetica","middle","12px");
 
-for(var i=32,y=64.5;i>0;i--){
-	var temp = [];
-	temp = createSVGObject("text");
-	temp.setAttribute("x","11.5");
-	temp.setAttribute("y",y.toString());
-	var rowText = document.createTextNode(i);
-	temp.appendChild(rowText);
-	textGrp.appendChild(temp);
-	y+=20;
+for(let s=0;s<2;s++){
+	for(let i=1;i<41;++i){
+		let temp = [];
+		temp = createSVGObject("text");
+		temp.setAttribute("x",xText.toString());
+		temp.setAttribute("y",yText.toString());
+		let rowText = document.createTextNode(i);
+		temp.appendChild(rowText);
+		textGrp.appendChild(temp);
+		yText-=16;
+	}
+	yText = yView - 65;
+	xText = xView - 18;
 }
 
 ellipses.appendChild(btmLeftEllipse);

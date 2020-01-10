@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="231px" height="721px" viewBox="-0.5 -0.5 231 721" style="background-color: rgb(255, 255, 255);"><defs/>
+<g>
+<rect x="24" y="30" width="206" height="690" fill="#ffffff" stroke="#666666" pointer-events="all"/>
+<rect x="24" y="30" width="206" height="21" fill="#f4f4f4" stroke="#666666" pointer-events="all"/>
+<rect x="24" y="699" width="206" height="21" fill="#f4f4f4" stroke="#666666" pointer-events="all"/>
+<rect x="24" y="51" width="9" height="648" fill="#f4f4f4" stroke="#666666" pointer-events="all"/>
+<rect x="221" y="51" width="9" height="648" fill="#f4f4f4" stroke="#666666" pointer-events="all"/>
+<ellipse cx="29.5" cy="40.5" rx="3" ry="3" fill="none" stroke="#666666" pointer-events="all"/>
+<ellipse cx="224.5" cy="40.5" rx="3" ry="3" fill="none" stroke="#666666" pointer-events="all"/>
+<ellipse cx="29.5" cy="709.5" rx="3" ry="3" fill="none" stroke="#666666" pointer-events="all"/>
+<ellipse cx="224.5" cy="709.5" rx="3" ry="3" fill="none" stroke="#666666" pointer-events="all"/>
+<g fill="#666666" font-family="Arial,Helvetica" text-anchor="middle" font-size="12px">
+<text x="11.5" y="64.5">32</text>
+<text x="11.5" y="84.5">31</text>
+<text x="11.5" y="104.5">30</text>
+<text x="11.5" y="124.5">29</text>
+<text x="11.5" y="144.5">28</text>
+<text x="11.5" y="164.5">27</text>
+<text x="11.5" y="184.5">26</text>
+<text x="11.5" y="204.5">25</text>
+<text x="11.5" y="224.5">24</text>
+<text x="11.5" y="244.5">23</text>
+<text x="11.5" y="264.5">22</text>
+<text x="11.5" y="284.5">21</text>
+<text x="11.5" y="304.5">20</text>
+<text x="11.5" y="324.5">19</text>
+<text x="11.5" y="344.5">18</text>
+<text x="11.5" y="364.5">17</text>
+<text x="11.5" y="384.5">16</text>
+<text x="11.5" y="404.5">15</text>
+<text x="11.5" y="424.5">14</text>
+<text x="11.5" y="444.5">13</text>
+<text x="11.5" y="464.5">12</text>
+<text x="11.5" y="484.5">11</text>
+<text x="11.5" y="504.5">10</text>
+<text x="11.5" y="524.5">9</text>
+<text x="11.5" y="544.5">8</text>
+<text x="11.5" y="564.5">7</text>
+<text x="11.5" y="584.5">6</text>
+<text x="11.5" y="604.5">5</text>
+<text x="11.5" y="624.5">4</text>
+<text x="11.5" y="644.5">3</text>
+<text x="11.5" y="664.5">2</text>
+<text x="11.5" y="684.5">1</text></g>
+<path d="M 0 51 L 24 51 M 0 71 L 24 71 M 0 91 L 24 91 M 0 111 L 24 111 M 0 131 L 24 131 M 0 151 L 24 151 M 0 171 L 24 171 M 0 191 L 24 191 M 0 211 L 24 211 M 0 231 L 24 231 M 0 251 L 24 251 M 0 271 L 24 271 M 0 291 L 24 291 M 0 311 L 24 311 M 0 331 L 24 331 M 0 351 L 24 351 M 0 371 L 24 371 M 0 391 L 24 391 M 0 411 L 24 411 M 0 431 L 24 431 M 0 451 L 24 451 M 0 471 L 24 471 M 0 491 L 24 491 M 0 511 L 24 511 M 0 531 L 24 531 M 0 551 L 24 551 M 0 571 L 24 571 M 0 591 L 24 591 M 0 611 L 24 611 M 0 631 L 24 631 M 0 651 L 24 651 M 0 671 L 24 671 M 0 691 L 24 691" fill="none" stroke="#666666" stroke-miterlimit="10" pointer-events="all"/>
+<rect x="33" y="51" width="188" height="20" fill="none" stroke="none" pointer-events="all"/>
+<rect x="33" y="71" width="188" height="20" fill="none" stroke="none" pointer-events="all"/>
+<rect x="33" y="91" width="188" height="20" fill="none" stroke="none" pointer-events="all"/>
+<rect x="20" y="0" width="210" height="20" fill="none" stroke="none" pointer-events="all"/>
+<g transform="translate(76.5,1.5)">
+<switch><foreignObject style="overflow:visible;" pointer-events="all" width="96" height="14" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;font-size:14px;font-family:Helvetica;color:#000000;line-height:1.2;vertical-align:top;white-space:nowrap;font-weight:bold;text-align:center;"><div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-block;text-align:inherit;text-decoration:inherit;">SERVER (32U)</div></div></foreignObject><text x="48" y="14" fill="#000000" text-anchor="middle" font-size="14px" font-family="Helvetica" font-weight="bold">SERVER (32U)</text></switch>
+</g>
+</g>
+</svg>
