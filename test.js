@@ -22,6 +22,9 @@ const yBtmRect = yView - 56;
 //const xRect = xView - ;
 //const yRect = yView - ;
 
+/* define text height */
+const textY = 15;
+
 /* http://xahlee.info/js/js_scritping_svg_basics.html */
 function createSVGObject(x){
 	let obj = document.createElementNS("http://www.w3.org/2000/svg", x);
@@ -88,7 +91,7 @@ setProperty1(shadedRack,0,0,0,0,"#666666","#f4f4f4","all");
 const emptyRect = createSVGObject("rect");
 setProperty1(emptyRect,206,690,24,0);
 
-emptyRackSpace.appendChild(emptyRect);
+emptyRackSpace.append(emptyRect);
 
 const btmRect = createSVGObject("rect");
 setProperty1(btmRect,206,21,xBtmRect,yBtmRect);
@@ -113,34 +116,39 @@ const textGrp = createSVGObject("g");
 setProperty3(textGrp,"#666666","Arial,Helvetica","middle","12px");
 
 for(let s=0;s<2;s++){
-	for(let i=1;i<41;++i){
+	for(let i=1;i<33;++i){
 		let temp = [];
 		temp = createSVGObject("text");
 		temp.setAttribute("x",xText.toString());
 		temp.setAttribute("y",yText.toString());
 		let rowText = document.createTextNode(i);
-		temp.appendChild(rowText);
-		textGrp.appendChild(temp);
-		yText-=16;
+		temp.append(rowText);
+		textGrp.append(temp);
+		yText-=20;
 	}
 	yText = yView - 65;
 	xText = xView - 18;
 }
 
-ellipses.appendChild(btmLeftEllipse);
-ellipses.appendChild(btmRightEllipse);
-ellipses.appendChild(topLeftEllipse);
-ellipses.appendChild(topRightEllipse);
+ellipses.append(btmLeftEllipse);
+ellipses.append(btmRightEllipse);
+ellipses.append(topLeftEllipse);
+ellipses.append(topRightEllipse);
 
-shadedRack.appendChild(btmRect);
-shadedRack.appendChild(topRect);
-shadedRack.appendChild(leftRect);
-shadedRack.appendChild(rightRect);
-shadedRack.appendChild(ellipses);
+shadedRack.append(btmRect);
+shadedRack.append(topRect);
+shadedRack.append(leftRect);
+shadedRack.append(rightRect);
+shadedRack.append(ellipses);
 
-g.appendChild(emptyRackSpace);
-g.appendChild(shadedRack);
-g.appendChild(textGrp);
-svg.appendChild(g);
+g.append(emptyRackSpace);
+g.append(shadedRack);
+g.append(textGrp);
 
-document.getElementById("svg").appendChild(svg);
+
+svg.append(g);
+
+document.getElementById("svg").append(svg);
+
+let texts = document.getElementsByTagName('text');
+console.log(texts[0].getBoundingClientRect().height);

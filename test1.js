@@ -19,27 +19,17 @@ function setProperty(...property){
 }
 
 let svg = document.getElementById("svg");
-let svgObj,temp;
+let svgObj;
 svg.addEventListener("load",function(){
 	svgObj = svg.contentDocument;
 
 	let texts = svgObj.getElementsByTagName('text');
+	let rectangle = svgObj.getElementsByTagName('rect');
+	rectangle[5].setAttribute("fill","green");
 
 	/* set ID attribute to later identify via SQL */
-	for(let x=0,id=0;x<32;x++){
+	for(let x=0,id=0;x<texts.length;x++){
 		id = texts[x].childNodes[0].data.toString();
 		texts[x].setAttribute("id",id); 
 	}
-
-	let xWdith = texts[0].getBoundingClientRect().width;
-	let yHeight = texts[0].getBoundingClientRect().height;
-	let xCoord = texts[0].getBoundingClientRect().x;
-	let yCoord = texts[0].getBoundingClientRect().y;
-
-	let highlightSVG = createSVGObject("rect");
-	setProperty(highlightSVG,30,30,100,100,"#666666","black","all");
-	highlightSVG.setAttribute("position","absolute");
-	
-	temp = svgObj.childNodes;
-	svg.appendChild(highlightSVG);
 },false);
