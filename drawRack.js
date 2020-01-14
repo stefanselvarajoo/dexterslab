@@ -2,9 +2,18 @@
 
 /* ensure ES6 compliance */
 
+
+/* number of racks */
+const rackSlot = 32;
+
+/* each slot is approx 20 in height, therefore 
+	empty rack space will be 20 * x */
+const slotheight = 21;
+const slotwidth = 206;
+
 /* define x and y viewbox parameters */
-const xView = 260;
-const yView = 725;
+const xView = slotwidth + 54;
+const yView = rackSlot*slotheight + 85;
 
 /* define x and y text offset parameters */
 let xText = 12;
@@ -19,11 +28,6 @@ const yEllipse = yView - 55;
 /* define rectangle offsets */
 const xBtmRect = xView - 236;
 const yBtmRect = yView - 56;
-//const xRect = xView - ;
-//const yRect = yView - ;
-
-/* define text height */
-const textY = 15;
 
 /* http://xahlee.info/js/js_scritping_svg_basics.html */
 function createSVGObject(x){
@@ -68,6 +72,12 @@ function createEllipseSet(...set){
 	setProperty2(set[3],(xBtmEllipse+xEllipse),(yBtmEllipse-yEllipse));
 }
 
+function allotedSlot(...object){
+	setProperty1(object[0],206,35,24,28,null,"green",null);
+	highlight.setAttribute("position","absolute");
+	highlight.setAttribute("fill-opacity",0.6);
+}
+
 /* create global SVG object */
 const svg = createSVGObject("svg");
 setProperty1(svg,xView,yView);
@@ -89,21 +99,22 @@ setProperty1(shadedRack,0,0,0,0,"#666666","#f4f4f4","all");
 
 /* create emptyrect grouping */
 const emptyRect = createSVGObject("rect");
-setProperty1(emptyRect,206,690,24,0);
+/* the value 10 is for padding purposes*/
+setProperty1(emptyRect,slotwidth,(slotheight*(rackSlot+1))+10,24,0);
 
 emptyRackSpace.append(emptyRect);
 
 const btmRect = createSVGObject("rect");
-setProperty1(btmRect,206,21,xBtmRect,yBtmRect);
+setProperty1(btmRect,slotwidth,slotheight,xBtmRect,yBtmRect);
 
 const topRect = createSVGObject("rect");
-setProperty1(topRect,206,21,24,0);
+setProperty1(topRect,slotwidth,slotheight,24,0);
 
 const leftRect = createSVGObject("rect");
-setProperty1(leftRect,9,648,24,21);
+setProperty1(leftRect,9,rackSlot*slotheight+8,24,21);
 
 const rightRect = createSVGObject("rect");
-setProperty1(rightRect,9,648,221,21);
+setProperty1(rightRect,9,rackSlot*slotheight+8,221,21);
 
 const btmLeftEllipse = createSVGObject("ellipse");
 const btmRightEllipse = createSVGObject("ellipse");
@@ -116,15 +127,15 @@ const textGrp = createSVGObject("g");
 setProperty3(textGrp,"#666666","Arial,Helvetica","middle","12px");
 
 for(let s=0;s<2;s++){
-	for(let i=1;i<33;++i){
-		let temp = [];
+	for(let i=1,temp=[];i<33;++i){
 		temp = createSVGObject("text");
 		temp.setAttribute("x",xText.toString());
 		temp.setAttribute("y",yText.toString());
+		temp.setAttribute("id",i);
 		let rowText = document.createTextNode(i);
 		temp.append(rowText);
 		textGrp.append(temp);
-		yText-=20;
+		yText-=slotheight;
 	}
 	yText = yView - 65;
 	xText = xView - 18;
@@ -145,6 +156,10 @@ g.append(emptyRackSpace);
 g.append(shadedRack);
 g.append(textGrp);
 
+
+let highlight = createSVGObject('rect');
+allotedSlot(highlight);
+g.append(highlight);
 
 svg.append(g);
 

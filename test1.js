@@ -25,7 +25,7 @@ svg.addEventListener("load",function(){
 
 	let texts = svgObj.getElementsByTagName('text');
 	let rectangle = svgObj.getElementsByTagName('rect');
-	rectangle[5].setAttribute("fill","green");
+	//rectangle[5].setAttribute("fill","green");
 
 	/* set ID attribute to later identify via SQL */
 	for(let x=0,id=0;x<texts.length;x++){
