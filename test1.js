@@ -36,7 +36,10 @@ svg.addEventListener("load",function(){
 	let xCoord = texts[0].getBoundingClientRect().x;
 	let yCoord = texts[0].getBoundingClientRect().y;
 
+	
+	let svgtest = createSVGObject("svg");
 	let highlightSVG = createSVGObject("rect");
-	setProperty(highlightSVG,);
+	setProperty(highlightSVG,xWdith,yHeight,xCoord,yCoord,null,"yellow","all");
+	svgtest.appendChild(highlightSVG);
 	
 },false);
