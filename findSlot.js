@@ -1,7 +1,13 @@
 "use strict";
 
-let oReq = new XMLHttpRequest();
+// let oReq = new XMLHttpRequest();
 
-oReq.open("POST","findSlot.php",true);
+// oReq.open("GET","findSlot.php",true);
 
-oReq.send();
+// oReq.send();
+
+fetch("findSlot.php").then(function(response) {
+  response.text().then(function(text) {
+    console.log(text);
+  });
+});
