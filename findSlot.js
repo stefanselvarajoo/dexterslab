@@ -1,8 +1,22 @@
 "use strict";
 
-function getSlot(data,slot){
-	let panel = data.toString(2) & slot.toString(2);
-	
+function getSlot(db,slot){
+	let binVal = new Uint32Array(db);
+
+	for(let i=0,count=0;i<32;i++){
+		if(binVal[i] == 0){
+			++count;
+		}
+		else{
+			/* take care of value 1 and count still 0 */
+			if(count == 0){}
+			else count--;
+		}
+		if(count == slot){
+			console.log("found");
+			return i;
+		}
+	}
 }
 
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
@@ -11,7 +25,10 @@ fetch("findSlot.php").then(function(response) {
   response.json().then(function(data) {
     for(const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
-		let status = getSlot(parseInt(val[1]) , 2);
+
+		let index = getSlot(parseInt(val[1]) , 2);
+		const rackID = val[0];
+		
 		
 	}
   });
