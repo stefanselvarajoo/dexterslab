@@ -14,7 +14,7 @@ String.prototype.hashCode = function(){
 /* https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript 
 	Method for generating quick hashes based on user name and passwords
 */
-var cyrb53 = function(str, seed = 0) {
+let cyrb53 = function(str, seed = 1) {
     let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
     for (let i = 0, ch; i < str.length; i++) {
         ch = str.charCodeAt(i);
@@ -25,3 +25,17 @@ var cyrb53 = function(str, seed = 0) {
     h2 = Math.imul(h2 ^ h2>>>16, 2246822507) ^ Math.imul(h1 ^ h1>>>13, 3266489909);
     return 4294967296 * (2097151 & h2) + (h1>>>0);
 };
+
+/* https://stackoverflow.com/questions/2257631/how-to-create-a-session-using-javascript */
+function writeCookie(name,value,days) {
+    let date, expires, val;
+    if (days) {
+        date = new Date();
+        date.setTime(date.getTime()+(days*24*60*60*1000));
+        expires = "; expires=" + date.toGMTString();
+            }else{
+        expires = "";
+    }
+	val = cyrb53(value);
+    document.cookie = name + "=" + val + expires + "; path=/";
+}

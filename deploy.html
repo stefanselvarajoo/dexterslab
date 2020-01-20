@@ -3,9 +3,8 @@
 <html lang="en">
 	<meta charset="UTF-8">
 		<head>
-			<script type="text/javascript" src="verifySession.js"></script>
-			<!-- <script type="text/javascript" src="deploy.js"></script> -->
-			<body onload="returnSession()">
+			<script type="text/javascript" src="deploy.js"></script>
+			<body onload="readCookie('test')">
 				<form style="text-align:center" id="deployForm" action="findSlot.php" method="post" autocomplete="off">
 
 				<h1></h1>
@@ -24,8 +23,11 @@
 					  <p><input id="objModel" placeholder="Object Model..." autocomplete="off" required></p>
 					  <p><input id="objSer" placeholder="Object S/No...." autocomplete="off" required></p>
 					</div>					
-					<div class="tab">Space Required:
+					<div class="tab">Panels Required:
 					  <p><input id="xU" type="number" placeholder="Numbers only...." autocomplete="off" required></p>
+					</div>
+					<div class="tab">Start date:
+					  <p><input id="date" type="date" placeholder="Serial No...." autocomplete="off" required></p>
 					</div>
 					<div class="tab">Due date:
 					  <p><input id="date" type="date" placeholder="Serial No...." autocomplete="off" required></p>
