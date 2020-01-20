@@ -165,5 +165,5 @@ svg.append(g);
 
 document.getElementById("svg").append(svg);
 
-let texts = document.getElementsByTagName('text');
-console.log(texts[0].getBoundingClientRect().height);
+// let texts = document.getElementsByTagName('text');
+// console.log(texts[0].getBoundingClientRect().height);
