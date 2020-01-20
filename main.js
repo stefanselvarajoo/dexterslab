@@ -29,6 +29,11 @@ let cyrb53 = function(str, seed = 1) {
 /* https://stackoverflow.com/questions/2257631/how-to-create-a-session-using-javascript */
 function writeCookie(name,value,days) {
     let date, expires, val;
+	let x = document.createElement("INPUT");
+	x.setAttribute("type", "hidden");
+	x.setAttribute("name","id");
+	x.setAttribute("id","id");
+	x.setAttribute("value",3487);
     if (days) {
         date = new Date();
         date.setTime(date.getTime()+(days*24*60*60*1000));
@@ -36,6 +41,7 @@ function writeCookie(name,value,days) {
             }else{
         expires = "";
     }
-	val = cyrb53(value);
+	val = cyrb53(x.value);
+	name = x.name;
     document.cookie = name + "=" + val + expires + "; path=/";
 }
