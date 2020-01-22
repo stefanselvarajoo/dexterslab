@@ -12,5 +12,5 @@
 	}
 	
 	startSession();
-	movePage(201,'main.html');
+	exit();
 ?>
