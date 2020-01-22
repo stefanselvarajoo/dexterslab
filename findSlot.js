@@ -54,8 +54,9 @@ fetch("findSlot.php").then(function(response) {
 		foundRack.rackID = val[0];
 		for(let i=0;i<2;i++){
 			foundRack.index.push(index);
-			index--;
+			index++;
 		}
+		console.log(foundRack);
 	}
   });
 });
