@@ -14,3 +14,7 @@ function readCookie(name) {
     }
     return '';
 }
+
+function getConfirmation(){
+	
+}
