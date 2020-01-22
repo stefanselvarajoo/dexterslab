@@ -22,6 +22,7 @@ function getSlot(db,slot){
 	}
 }
 
+/* send back object containing rackID and its available slot */
 let rack = {
 	rackID:0,
 	index: []

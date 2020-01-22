@@ -1,15 +1,4 @@
 "use strict";
-/*
-String.prototype.hashCode = function(){
-	var hash = 0;
-	if (this.length == 0) return hash;
-	for (i = 0; i < this.length; i++) {
-		char = this.charCodeAt(i);
-		hash = ((hash<<5)-hash)+char;
-		hash = hash & hash; // Convert to 32bit integer
-	}
-	return hash;
-}*/
 
 /* https://stackoverflow.com/questions/7616461/generate-a-hash-from-string-in-javascript 
 	Method for generating quick hashes based on user name and passwords
@@ -26,22 +15,28 @@ let cyrb53 = function(str, seed = 1) {
     return 4294967296 * (2097151 & h2) + (h1>>>0);
 };
 
+/* get PHPSESSID and hash using cyrb53() function */
 /* https://stackoverflow.com/questions/2257631/how-to-create-a-session-using-javascript */
-function writeCookie(name,value,days) {
-    let date, expires, val;
-	let x = document.createElement("INPUT");
-	x.setAttribute("type", "hidden");
-	x.setAttribute("name","id");
-	x.setAttribute("id","id");
-	x.setAttribute("value",3487);
-    if (days) {
-        date = new Date();
-        date.setTime(date.getTime()+(days*24*60*60*1000));
-        expires = "; expires=" + date.toGMTString();
-            }else{
-        expires = "";
-    }
-	val = cyrb53(x.value);
-	name = x.name;
-    document.cookie = name + "=" + val + expires + "; path=/";
+function writeCookie(name,days) {
+		let date, expires, val, sessionID;
+		if (days) {
+			date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			expires = "; expires=" + date.toGMTString();
+				}else{
+			expires = "";
+		}
+		sessionID = document.cookie.match(RegExp('(^| )' + 'PHPSESSID' + '=([^;]+)'))[0];
+		sessionID = sessionID.split('=')[1];
+		val = cyrb53(sessionID);
+		document.cookie = name + "=" + val + expires + "; path=/";
+}
+
+/* check if cookies enabled */
+function cookieScript()
+{
+	if(navigator.cookieEnabled)
+		return true;
+	else
+		return false;
 }
