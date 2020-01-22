@@ -18,18 +18,23 @@ let cyrb53 = function(str, seed = 1) {
 /* get PHPSESSID and hash using cyrb53() function */
 /* https://stackoverflow.com/questions/2257631/how-to-create-a-session-using-javascript */
 function writeCookie(name,days) {
-	let date, expires, val, sessionID;
-	if (days) {
-		date = new Date();
-		date.setTime(date.getTime()+(days*24*60*60*1000));
-		expires = "; expires=" + date.toGMTString();
-			}else{
-		expires = "";
+	if(cookieScript()){
+		let date, expires, val, sessionID;
+		if (days) {
+			date = new Date();
+			date.setTime(date.getTime()+(days*24*60*60*1000));
+			expires = "; expires=" + date.toGMTString();
+				}else{
+			expires = "";
+		}
+		sessionID = document.cookie.match(RegExp('(^| )' + 'PHPSESSID' + '=([^;]+)'))[0];
+		sessionID = sessionID.split('=')[1];
+		val = cyrb53(sessionID.toString());
+		document.cookie = name + "=" + val + expires + "; path=/";
+		
 	}
-	//sessionID = document.cookie.match(RegExp('(^| )' + 'PHPSESSID' + '=([^;]+)'))[0];
-	//sessionID = sessionID.split('=')[1];
-	val = cyrb53("test");
-	document.cookie = name + "=" + val + expires + "; path=/";
+	else
+		alert("Cookie are not enabled!");
 }
 
 /* check if cookies enabled */
