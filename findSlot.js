@@ -16,11 +16,9 @@ let found = false;
 /* find the exact slot(s) from the rack which are available */
 /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array */
 function getSlot(db,slot){
-	// let binVal = new Uint32Array(db.toString(2));
 	const temp = zeroFill(db.toString(2),32);
 	let binVal = Array.from(temp);
 	for(let i=binVal.length-1,count=0;i>-1;i--){
-		
 		if(binVal[i] == 0){
 			++count;
 		}
@@ -59,5 +57,6 @@ fetch("findSlot.php").then(function(response) {
 		}
 		found = false;
 	}
+	console.log(foundRack);
   });
 });
