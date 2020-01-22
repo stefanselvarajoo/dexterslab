@@ -12,14 +12,14 @@ function zeroFill( number, width )
   return number + ""; // always return a string
 }
 
-
+let found = false;
 /* find the exact slot(s) from the rack which are available */
 /* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array */
 function getSlot(db,slot){
 	// let binVal = new Uint32Array(db.toString(2));
-	let temp = zeroFill(db.toString(2),32);
+	const temp = zeroFill(db.toString(2),32);
 	let binVal = Array.from(temp);
-	for(let i=binVal.length-1,count=0;i>0;i--){
+	for(let i=binVal.length-1,count=0;i>-1;i--){
 		
 		if(binVal[i] == 0){
 			++count;
@@ -30,7 +30,7 @@ function getSlot(db,slot){
 			else count--;
 		}
 		if(count == slot){
-			console.log("found");
+			found = true;
 			return i;
 		}
 	}
@@ -50,13 +50,14 @@ fetch("findSlot.php").then(function(response) {
     for(const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
 		let index = getSlot(parseInt(val[1]) , 2);
-
-		foundRack.rackID = val[0];
-		for(let i=0;i<2;i++){
-			foundRack.index.push(index);
-			index++;
+		if(found){
+			foundRack.rackID = val[0];
+			for(let i=0;i<2;i++){
+				foundRack.index.push(index);
+				index++;
+			}
 		}
-		console.log(foundRack);
+		found = false;
 	}
   });
 });
