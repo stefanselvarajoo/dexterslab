@@ -16,5 +16,7 @@ function readCookie(name) {
 }
 
 function getConfirmation(){
-	
+	if(window.confirm("Confirm Submission?"))
+	{}
+	else{}
 }
