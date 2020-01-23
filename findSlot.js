@@ -35,10 +35,11 @@ function getSlot(db,slot){
 }
 
 /* send back object containing rackID and its available slot */
-let rack = {
+const rack = {
 	rackID: 0,
-	index: []
+	index: [0]
 };
+
 let foundRack = Object.create(rack);
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
@@ -48,7 +49,7 @@ fetch("findSlot.php").then(function(response) {
 		//val[0] represents the rackID, val[1] represents slots available
 		let index = getSlot(parseInt(val[1]) , 2);
 		if(found){
-			foundRack.rackID = val[0];
+			foundRack.rackID = parseInt(val[0]);
 			for(let i=0;i<2;i++){
 				foundRack.index.push(index);
 				index++;
@@ -56,5 +57,7 @@ fetch("findSlot.php").then(function(response) {
 		}
 		found = false;
 	}
+	const test = Object.entries(foundRack);
+	console.log(test);
   });
 });
