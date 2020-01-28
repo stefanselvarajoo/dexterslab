@@ -37,7 +37,7 @@ function getSlot(db,slot){
 /* send back object containing rackID and its available slot */
 const rack = {
 	rackID: 0,
-	index: [0]
+	index: []
 };
 
 let foundRack = Object.create(rack);
@@ -57,7 +57,7 @@ fetch("findSlot.php").then(function(response) {
 		}
 		found = false;
 	}
-	const test = Object.entries(foundRack);
-	console.log(test);
   });
 });
+
+console.log(foundRack);
