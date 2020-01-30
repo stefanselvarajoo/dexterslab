@@ -29,36 +29,43 @@ function getSlot(db,slot){
 		}
 		if(count == slot){
 			found = true;
-			return i;
+			return i;                                 
 		}
 	}
 }
 
 /* send back object containing rackID and its available slot */
 let rack = {
-	id: [],
+	id: 0,
 	panel: []
 };
 
+function specCallback(cb){
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
 fetch("findSlot.php").then(function(response) {
   response.json().then(function(data) {
     for(const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
-		let slot = getSlot(parseInt(val[1]) , 2);
+		let slot = getSlot(parseInt(val[1]) , 3);
 		if(found){
-			rack.id.push(parseInt(val[0]));
-			for(let i=0;i<2;i++){
+			rack.id=(parseInt(val[0]));
+			for(let i=0;i<3;i++){
 				rack.panel.push(slot);
 				slot++;
 			}
 		}
 		found = false;
 	}
+	cb(rack);
   });
+  
 });
+}
 
-let id = rack["id"];
+specCallback(function(rack){
+// so you can use the values from here
 
-console.log(id);
+console.log(rack.panel);
+
+});
