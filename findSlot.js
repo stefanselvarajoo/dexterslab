@@ -40,7 +40,7 @@ let rack = {
 	panel: []
 };
 
-function specCallback(cb){
+/*function specCallback(cb){
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
 fetch("findSlot.php").then(function(response) {
@@ -62,6 +62,8 @@ fetch("findSlot.php").then(function(response) {
   
 });
 }
+
+*/
 
 specCallback(function(rack){
 // so you can use the values from here
