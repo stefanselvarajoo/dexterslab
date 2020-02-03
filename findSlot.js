@@ -40,12 +40,48 @@ let rack = {
 	panel: []
 };
 
-function specCallback(cb){
+//function specCallback(cb){
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
-fetch("findSlot.php").then(function(response) {
+
+async function getData(url=''){
+	const response = await fetch(url,{
+		method:'GET',
+		mode:'cors',
+		cache:'no-cache',
+		credentials:'same-origin',
+		headers:{
+			'Content-Type': 'application/json'
+		},
+		redirect:'follow',
+		referrerPolicy:'no-referrer'
+	});
+	return await response.json();
+}
+
+getData('findSlot.php').then(data => {
+	for(const val of Object.entries(data)){
+		//val[0] represents the rackID, val[1] represents slots available
+		let slot = getSlot(parseInt(val[1]) , 3);
+		if(found){
+			rack.id = parseInt(val[0]);
+			for(let i=0;i<3;i++){
+				rack.panel.push(slot);
+				slot++;
+			}
+		}
+		found = false;
+	}
+	console.log(rack.id);
+});
+console.log(rack.id);
+/* fetch("findSlot.php").then(function(response) {
   response.json().then(function(data) {
-    for(const val of Object.entries(data)){
+    
+	
+	
+	
+	for(const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
 		let slot = getSlot(parseInt(val[1]) , 3);
 		if(found){
@@ -57,15 +93,20 @@ fetch("findSlot.php").then(function(response) {
 		}
 		found = false;
 	}
-	cb(rack);
+	//cb(rack);
+	
+	
+	
+	
+	
   });
   
 });
 }
-
-specCallback(function(rack){
+ */
+/* specCallback(function(rack){
 // so you can use the values from here
 
 console.log(rack.panel);
 
-});
+}); */
