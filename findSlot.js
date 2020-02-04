@@ -35,15 +35,13 @@ function getSlot(db,slot){
 }
 
 /* send back object containing rackID and its available slot */
-let rack = {
-	id: 0,
-	panel: []
-};
+const rackUpdateAsync = Object.create(Object.prototype);
 
 //function specCallback(cb){
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
-
+/* https://gist.github.com/msmfsd/fca50ab095b795eb39739e8c4357a808 */
+/* https://stackoverflow.com/questions/48765538/pass-object-reference-into-javascript-async-function-but-the-unexpected-value-g */
 async function getData(url=''){
 	const response = await fetch(url,{
 		method:'GET',
@@ -56,11 +54,16 @@ async function getData(url=''){
 		redirect:'follow',
 		referrerPolicy:'no-referrer'
 	});
-	return await response.json();
+	const result = await response.json();	
+	return result;
 }
 
 getData('findSlot.php').then(data => {
-	for(const val of Object.entries(data)){
+	let rack = {
+		id: 0,
+		panel: []
+	};
+	for (const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
 		let slot = getSlot(parseInt(val[1]) , 3);
 		if(found){
@@ -69,44 +72,9 @@ getData('findSlot.php').then(data => {
 				rack.panel.push(slot);
 				slot++;
 			}
+			Object.assign(rackUpdateAsync,rack);
 		}
 		found = false;
 	}
-	console.log(rack.id);
 });
-console.log(rack.id);
-/* fetch("findSlot.php").then(function(response) {
-  response.json().then(function(data) {
-    
-	
-	
-	
-	for(const val of Object.entries(data)){
-		//val[0] represents the rackID, val[1] represents slots available
-		let slot = getSlot(parseInt(val[1]) , 3);
-		if(found){
-			rack.id=(parseInt(val[0]));
-			for(let i=0;i<3;i++){
-				rack.panel.push(slot);
-				slot++;
-			}
-		}
-		found = false;
-	}
-	//cb(rack);
-	
-	
-	
-	
-	
-  });
-  
-});
-}
- */
-/* specCallback(function(rack){
-// so you can use the values from here
-
-console.log(rack.panel);
-
-}); */
+console.log(rackUpdateAsync);
