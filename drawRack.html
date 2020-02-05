@@ -3,7 +3,26 @@
 <html lang="en">
 <meta charset="UTF-8">
 <head>
-<script type="text/javascript" src="findSlot.js"></script>
+<!--
+
+<script>function loadJavaScript() {
+    let script = document.createElement("script");
+    script.src = "findSlot.js";
+    script.type = "text/javascript";
+    window.onload = function () {
+		script.onload = function() {
+			console.log('script was loaded successfully');
+		}
+		script.onerror = function (e) {
+			console.error('script.onerror');
+		}
+    }
+    document.getElementsByTagName("head")[0].appendChild(script);
+}
+loadJavaScript();</script>
+
+-->
+<script defer type="text/javascript" src="findSlot.js"></script>
 <link rel="stylesheet" href="drawRack.css">
 <body>
 <!-- <object type="image/svg+xml" data="rack.svg" id="svg"></object> -->
@@ -11,8 +30,7 @@
 <div class="split left">
   <div class="centered">
   <text>You have been assigned the following rack</text>
-	<div class = "alloted" id="rackID">A53, Panel 32</div>
-	<p><script></script></p>
+	<div class = "alloted" id="rackID"></div>
 </div>
 </div>
 
@@ -22,6 +40,7 @@
 </div>
 </div>
 <script defer type="text/javascript" src="drawRack.js"></script>
+
 </body>
 </head>
 </html>

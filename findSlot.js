@@ -37,6 +37,7 @@ function getSlot(db,slot){
 /* send back object containing rackID and its available slot */
 const rackUpdateAsync = Object.create(Object.prototype);
 
+
 //function specCallback(cb){
 /* https://developer.mozilla.org/en-US/docs/Web/API/Body/json */
 /* https://zellwk.com/blog/looping-through-js-objects/ */
@@ -54,7 +55,7 @@ async function getData(url=''){
 		redirect:'follow',
 		referrerPolicy:'no-referrer'
 	});
-	const result = await response.json();	
+	const result = await response.json();
 	return result;
 }
 
@@ -63,6 +64,7 @@ getData('findSlot.php').then(data => {
 		id: 0,
 		panel: []
 	};
+	let lol = document.getElementById('rackID');
 	for (const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
 		let slot = getSlot(parseInt(val[1]) , 3);
@@ -76,5 +78,6 @@ getData('findSlot.php').then(data => {
 		}
 		found = false;
 	}
+	lol.innerHTML = 'Rack ID '+rack.id + ',Panel(s) ' + rack.panel;
 });
-console.log(rackUpdateAsync);
+
