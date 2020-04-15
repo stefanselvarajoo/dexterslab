@@ -73,9 +73,11 @@ function createEllipseSet(...set){
 }
 
 function allotedSlot(...object){
-	setProperty1(object[0],206,35,24,28,null,"green",null);
-	highlight.setAttribute("position","absolute");
-	highlight.setAttribute("fill-opacity",0.6);
+	//setProperty1(object[0],206,35,24,28,null,"green",null);
+	setProperty1(object[0],object[1],object[2],object[3],object[4],null,"green",null);
+	console.log(object[3]);
+	// highlight.setAttribute("position","absolute");
+	// highlight.setAttribute("fill-opacity",0.6);
 }
 
 /* create global SVG object */
@@ -126,7 +128,7 @@ createEllipseSet(btmLeftEllipse,btmRightEllipse,topLeftEllipse,topRightEllipse);
 const textGrp = createSVGObject("g");
 setProperty3(textGrp,"#666666","Arial,Helvetica","middle","12px");
 
-for(let s=0;s<2;s++){
+//for(let s=0;s<2;s++){
 	for(let i=1,temp=[];i<33;++i){
 		temp = createSVGObject("text");
 		temp.setAttribute("x",xText.toString());
@@ -139,7 +141,7 @@ for(let s=0;s<2;s++){
 	}
 	yText = yView - 65;
 	xText = xView - 18;
-}
+//}
 
 ellipses.append(btmLeftEllipse);
 ellipses.append(btmRightEllipse);
@@ -157,9 +159,9 @@ g.append(shadedRack);
 g.append(textGrp);
 
 
-let highlight = createSVGObject('rect');
-allotedSlot(highlight);
-g.append(highlight);
+//let highlight = createSVGObject('rect');
+//allotedSlot(highlight);
+//g.append(highlight);
 
 svg.append(g);
 

@@ -64,7 +64,7 @@ getData('findSlot.php').then(data => {
 		id: 0,
 		panel: []
 	};
-	let lol = document.getElementById('rackID');
+
 	for (const val of Object.entries(data)){
 		//val[0] represents the rackID, val[1] represents slots available
 		let slot = getSlot(parseInt(val[1]) , 3);
@@ -78,6 +78,19 @@ getData('findSlot.php').then(data => {
 		}
 		found = false;
 	}
-	lol.innerHTML = 'Rack ID '+rack.id + ',Panel(s) ' + rack.panel;
-});
 
+});
+	console.log(rackUpdateAsync);
+	let txtUpdate = document.getElementById('rackID');
+	let colourise = document.getElementById('svg');
+	txtUpdate.innerHTML = 'Rack ID '+rackUpdateAsync.id + ',Panel(s) ' + rackUpdateAsync.panel;
+	const panels = rackUpdateAsync.panel.length;
+	
+	for(let i=0;i< panels; i++){
+		let test  = document.getElementById(rackUpdateAsync.panel[i]);
+		let highlight = createSVGObject('rect');
+		allotedSlot(highlight,210,65,test.getBoundingClientRect().left,test.getBoundingClientRect().right,null,'green',null);
+		highlight.setAttribute("position","absolute");
+		highlight.setAttribute("fill-opacity",0.6);
+		g.append(highlight);
+	}
